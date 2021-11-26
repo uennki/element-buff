@@ -1,15 +1,7 @@
 {
-  "name": "uennki-ui",
-  "version": "1.0.0",
-  "description": "vue-cli plugin to add form component based on element ui framework secondary encapsulation, suitable for vue2.0 version 🍿",
-  "main": "lib/index.umd.min.js",
-  "author": "uennki",
-  "license": "ISC",
-  "keywords": [
-    "element",
-    "form",
-    "table"
-  ],
+  "name": "vue-cli-vue2",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

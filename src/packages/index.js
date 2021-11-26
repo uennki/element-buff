@@ -13,4 +13,5 @@ if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
-export default { install, ProElFormTable, ProElTable };
+export { ProElFormTable };
+export default { install };

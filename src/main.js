@@ -6,9 +6,8 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(ElementUI);
 
-// import { ProElFormTable } from "../lib/index.common";
-import { ProElFormTable } from "element-form-table";
-Vue.use(ProElFormTable);
+import UennkiUI from "./packages/index";
+Vue.use(UennkiUI);
 
 Vue.config.productionTip = false;
 

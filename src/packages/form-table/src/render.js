@@ -1,3 +1,5 @@
+import { isFunction } from "../../../utils/index";
+
 export default {
   name: "ProElFormTable",
   props: {
@@ -222,21 +224,22 @@ export default {
       getFormProps,
     } = this;
 
-    const renderHeader = ({ rules, title }) => {
+    const renderDefaultHeader = ({ rules = {}, title }) => {
       const requestedHeader = (
         <span>
           <i style="color: red">*</i> {title}
         </span>
       );
 
-      return rules ? requestedHeader : title;
+      return rules.required ? requestedHeader : title;
     };
 
-    const renderCustomeComponent = (column) => {
+    const renderDefaultComponent = (column) => {
       const {
         title,
         dataIndex,
         render,
+        renderHeader,
         rules,
         tableColumnProps,
         formItemProps,
@@ -249,21 +252,25 @@ export default {
           prop={dataIndex}
           props={tableColumnProps}
           scopedSlots={{
-            default: ({ row, $index }) => {
-              // 渲染单元格主体内容
-              return (
-                <el-form-item
-                  label=""
-                  style="margin-bottom: 0px"
-                  prop={`dataSource[${$index}][${dataIndex}]`}
-                  rules={rules}
-                  props={formItemProps}
-                >
-                  {render(h, row, $index)}
-                </el-form-item>
-              );
-            },
-            header: () => renderHeader(column),
+            default: isFunction(render)
+              ? ({ row, $index }) => {
+                  // 渲染单元格主体内容
+                  return (
+                    <el-form-item
+                      label=""
+                      style="margin-bottom: 0px"
+                      prop={`dataSource[${$index}][${dataIndex}]`}
+                      rules={rules}
+                      props={formItemProps}
+                    >
+                      {render(h, row, $index)}
+                    </el-form-item>
+                  );
+                }
+              : "",
+            header: isFunction(renderHeader)
+              ? () => renderHeader()
+              : () => renderDefaultHeader(column),
           }}
         ></el-table-column>
       );
@@ -280,6 +287,7 @@ export default {
         componentEvents,
         componentProps,
         options = [],
+        renderHeader,
       } = column;
 
       return (
@@ -354,21 +362,10 @@ export default {
                 </el-form-item>
               );
             },
-            header: () => renderHeader(column),
+            header: isFunction(renderHeader)
+              ? () => renderHeader()
+              : () => renderDefaultHeader(column),
           }}
-        ></el-table-column>
-      );
-    };
-
-    const renderDefaultComponent = (column) => {
-      const { title, dataIndex, tableColumnProps } = column;
-
-      return (
-        <el-table-column
-          resizable={false}
-          label={title}
-          prop={dataIndex}
-          props={tableColumnProps}
         ></el-table-column>
       );
     };
@@ -391,7 +388,7 @@ export default {
           on={getTableEvents}
         >
           {columns.map((column) => {
-            const { render, componentName } = column;
+            const { componentName } = column;
             const components = [
               "el-input",
               "el-select",
@@ -401,17 +398,12 @@ export default {
               "el-input-number",
             ];
 
-            // 返回自定义渲染 优先级第一
-            if (render && typeof render === "function") {
-              return renderCustomeComponent(column);
-            }
-
-            // 返回输入框组件 优先级第二
+            // 返回内置组件
             if (components.includes(componentName)) {
               return renderFormComponent(column);
             }
 
-            // 返回默认组件 优先级第三
+            // 返回默认组件
             return renderDefaultComponent(column);
           })}
         </el-table>

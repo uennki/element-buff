@@ -1,7 +1,7 @@
 import { isFunction } from "../../../utils/index";
 
 export default {
-  name: "ProElTable",
+  name: "ProElUpload",
   props: {
     size: {
       type: String,

@@ -1,4 +1,4 @@
-import Component from "./src/render.js";
+import Component from "./src/main.vue";
 
 /* istanbul ignore next */
 Component.install = function (Vue) {

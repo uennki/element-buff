@@ -6,7 +6,7 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(ElementUI);
 
-import UennkiUI from "./packages/index";
+import UennkiUI from "./packages/index.js";
 Vue.use(UennkiUI);
 
 Vue.config.productionTip = false;

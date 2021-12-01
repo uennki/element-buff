@@ -205,9 +205,9 @@ export default {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           alert(JSON.stringify(this.dataSource));
-          success && typeof success === "function" && success();
+          isFunction(success) && success();
         } else {
-          error && typeof error === "function" && error();
+          isFunction(error) && error();
           return false;
         }
       });

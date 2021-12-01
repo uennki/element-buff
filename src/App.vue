@@ -4,6 +4,9 @@
     <hr />
     <ProElTable />
     <hr />
+    <ProElFormSearch />
+    <hr />
+    <ProElUpload />
   </div>
 </template>
 

@@ -1,9 +1,8 @@
-// import Table from "./src/main.vue";
-import Table from "./src/render.js";
+import Component from "./src/render.js";
 
 /* istanbul ignore next */
-Table.install = function (Vue) {
-  Vue.component(Table.name, Table);
+Component.install = function (Vue) {
+  Vue.component(Component.name, Component);
 };
 
-export default Table;
+export default Component;

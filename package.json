@@ -1,25 +1,39 @@
 {
-  "name": "vue-cli-vue2",
-  "version": "0.1.0",
-  "private": true,
+  "name": "uennki-ui",
+  "version": "1.0.1",
+  "private": false,
+  "description": "vue-cli plugin to add form component based on element ui framework secondary encapsulation, suitable for vue2.0 version 🍿",
+  "main": "lib/index.umd.min.js",
+  "author": "uennki",
+  "license": "ISC",
+  "keywords": [
+    "element",
+    "form",
+    "table"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "lint": "vue-cli-service lint",
     "lib": "vue-cli-service build --target lib --name index --dest lib src/packages/index.js"
   },
   "dependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
     "@vue/babel-preset-jsx": "^1.2.4",
+    "async-validator": "1.11.5",
     "core-js": "^3.6.5",
-    "element-form-table": "^1.0.7",
     "element-ui": "^2.15.6",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-vue-demo": "^1.0.15"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "@vuepress/plugin-back-to-top": "^1.8.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",

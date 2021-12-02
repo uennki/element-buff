@@ -1,5 +1,5 @@
 ---
-title: '什么是Element Buff'
+title: '什么是Uennki UI'
 ---
 
 ## 介绍
@@ -25,7 +25,8 @@ module.exports = {
 第二步：安装 element 和 uennki
 
 ```bash
-yarn add element-ui uennki-ui
+yarn add element-ui 
+yarn add uennki-ui
 ```
 
 在 main.js 中写入以下内容

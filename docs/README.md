@@ -1,12 +1,11 @@
 ---
 title: 序
-author: 'uennki'
 date: 2021-12-02
 ---
 
 <template>
   <div class="wrapper" data-tilt>
-    <h1>uennki ui</h1>
+    <h1>Element Buff</h1>
     <hr />
     <div class="container">
       <p>

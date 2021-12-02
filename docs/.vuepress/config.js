@@ -37,5 +37,8 @@ module.exports = {
 };
 
 function getComponents() {
-  return [["/guide/search", "Search 搜索"]];
+  return [
+    ["/guide/search", "Search 搜索"],
+    ["/guide/form-table", "FormTable 表单"],
+  ];
 }

@@ -20,6 +20,7 @@ export default {
           {
             title: "Name",
             dataIndex: "name",
+            width: 200,
             render: (h, row, $index) => {
               return (
                 <el-input
@@ -38,12 +39,14 @@ export default {
           {
             title: "Phone",
             dataIndex: "phone",
+            width: 200,
             rules: { required: true },
             componentName: "el-input",
           },
           {
             title: "Age",
             dataIndex: "age",
+            width: 200,
             rules: { required: true },
             componentName: "el-input-number",
             tableColumnProps: {
@@ -53,11 +56,13 @@ export default {
           {
             title: "Date",
             dataIndex: "date",
+            width: 200,
             componentName: "el-date-picker",
           },
           {
             title: "Like",
             dataIndex: "like",
+            width: 200,
             componentName: "el-select",
             options: [
               { label: "cat", value: "0" },
@@ -67,6 +72,7 @@ export default {
           {
             title: "Source",
             dataIndex: "source",
+            width: 200,
             render: (h, row, $index) => {
               const options = [
                 {
@@ -114,6 +120,7 @@ export default {
           {
             title: "Address",
             dataIndex: "address",
+            width: 200,
             componentName: "el-input",
           },
         ];
@@ -238,6 +245,7 @@ export default {
       const {
         title,
         dataIndex,
+        width,
         render,
         renderHeader,
         rules,
@@ -247,6 +255,7 @@ export default {
 
       return (
         <el-table-column
+          width={width}
           resizable={false}
           label={title}
           prop={dataIndex}
@@ -280,6 +289,7 @@ export default {
       const {
         title,
         dataIndex,
+        width,
         rules,
         tableColumnProps,
         formItemProps,
@@ -292,6 +302,7 @@ export default {
 
       return (
         <el-table-column
+          width={width}
           resizable={false}
           label={title}
           prop={dataIndex}

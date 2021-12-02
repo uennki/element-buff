@@ -1,4 +1,4 @@
-# Search 搜索
+# FormTable 表单
 
 搜索通常用于表单，列表页面中，起到对数据进行查询的作用。由 element 中的输入框、下拉框、时间选择、级联选择四个原生组件封装而成。
 
@@ -14,7 +14,7 @@
 
 ```vue
 <template>
-  <ProElSearch :columns="columns" :dataSource="dataSource" />
+  <ProElFormTable />
 </template>
 
 <script>

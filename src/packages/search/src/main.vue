@@ -85,60 +85,7 @@ export default {
     columns: {
       type: Array,
       default: function () {
-        return [
-          {
-            label: "input",
-            dataIndex: "input",
-            componentName: "el-input",
-          },
-          {
-            label: "select",
-            dataIndex: "select",
-            componentName: "el-select",
-            options: [
-              {
-                label: "hello",
-                value: 1,
-              },
-              {
-                label: "world",
-                value: 2,
-              },
-            ],
-          },
-          {
-            label: "date",
-            dataIndex: "date",
-            componentName: "el-date-picker",
-          },
-          {
-            label: "cascader",
-            dataIndex: "cascader",
-            componentName: "el-cascader",
-            options: [
-              {
-                value: "zhinan",
-                label: "指南",
-                children: [
-                  {
-                    value: "shejiyuanze",
-                    label: "设计原则",
-                    children: [
-                      {
-                        value: "yizhi",
-                        label: "一致",
-                      },
-                      {
-                        value: "fankui",
-                        label: "反馈",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ];
+        return [];
       },
     },
     dataSource: {

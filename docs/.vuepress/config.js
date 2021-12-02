@@ -1,15 +1,8 @@
 module.exports = {
   base: "",
-  title: "Hello VuePress",
-  description: "Just playing around",
-
-  configureWebpack: {
-    resolve: {
-      alias: {
-        "@": "/docs/guide",
-      },
-    },
-  },
+  title: "Element Buff",
+  description: "一个简单实用的业务组件库💡",
+  head: [["link", { rel: "icon", href: "logo.png" }]],
 
   markdown: {
     lineNumbers: true,
@@ -22,7 +15,7 @@ module.exports = {
     docsDir: "docs",
     displayAllHeaders: true,
     nav: [
-      { text: "首页", link: "/" },
+      // { text: "介绍", link: "/" },
       { text: "指南", link: "/guide/" },
       { text: "Github", link: "https://github.com/uennki" },
     ],
@@ -30,14 +23,13 @@ module.exports = {
       {
         title: "概览",
         collapsable: false,
-        sidebarDepth: 1,
+        // sidebarDepth: 2,
         children: ["/guide/"],
       },
 
       {
         title: "组件",
         collapsable: false,
-        sidebarDepth: 0,
         children: getComponents(),
       },
     ],

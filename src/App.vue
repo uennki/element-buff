@@ -11,8 +11,13 @@
 </template>
 
 <script>
+import VanillaTilt from "vanilla-tilt";
 export default {
   name: "App",
+  mounted() {
+    const element = document.querySelector(".js-tilt");
+    VanillaTilt.init(element);
+  },
 };
 </script>
 

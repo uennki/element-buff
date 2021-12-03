@@ -1,6 +1,6 @@
 {
   "name": "element-buff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "vue-cli plugin to add form component based on element ui framework secondary encapsulation, suitable for vue2.0 version 🍿",
   "main": "lib/index.umd.min.js",

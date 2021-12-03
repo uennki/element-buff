@@ -4,7 +4,7 @@
     <hr />
     <ProElTable />
     <hr />
-    <ProElFormSearch />
+    <ProElFormSearch :span="12" />
     <hr />
     <ProElUpload />
   </div>

@@ -61,13 +61,15 @@
 
       <el-col :span="span">
         <el-form-item label="">
-          <el-button type="text" @click="handleShowMore">
-            {{ getShowTitle }}
-          </el-button>
-          <el-button size="small" @click="handleReset">Reset</el-button>
-          <el-button type="primary" size="small" @click="handleSubmit"
-            >Submit</el-button
-          >
+          <slot name="default">
+            <el-button type="text" @click="handleShowMore">
+              {{ getShowTitle }}
+            </el-button>
+            <el-button size="small" @click="handleReset">重置</el-button>
+            <el-button type="primary" size="small" @click="handleSubmit">
+              搜索
+            </el-button>
+          </slot>
         </el-form-item>
       </el-col>
     </el-row>
@@ -80,7 +82,11 @@ export default {
   props: {
     span: {
       type: Number,
-      default: 12,
+      default: 6,
+    },
+    collapse: {
+      type: Boolean,
+      default: false,
     },
     columns: {
       type: Array,
@@ -112,17 +118,17 @@ export default {
   },
   data() {
     return {
-      showMore: false,
+      showMore: this.collapse,
     };
   },
   computed: {
     getColumns: function () {
-      if (this.showMore) return this.columns.slice(0);
-      return this.columns.slice(0, 3);
+      if (this.showMore) return this.columns.slice(0, 3);
+      return this.columns.slice(0);
     },
     getShowTitle: function () {
-      if (this.showMore) return "收起";
-      return "展开";
+      if (this.showMore) return "展开";
+      return "收起";
     },
   },
   methods: {

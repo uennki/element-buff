@@ -10,80 +10,13 @@ export default {
     columns: {
       type: Array,
       default: function () {
-        return [
-          {
-            tableColumnProps: {
-              type: "selection",
-              align: "center",
-            },
-          },
-          {
-            title: "Name",
-            dataIndex: "name",
-            render: (h, row, $index) => {
-              return (
-                <el-input
-                  v-model={row.name}
-                  style="width: 100%"
-                  placeholder="请输入"
-                  props={{ size: "small" }} // 绑定相关属性
-                  on={{
-                    // 绑定相关事件
-                    input: (value) => console.log("hello world"),
-                  }}
-                />
-              );
-            },
-          },
-          {
-            title: "Phone",
-            dataIndex: "phone",
-            rules: { required: true },
-            componentName: "el-input",
-          },
-          {
-            title: "Age",
-            dataIndex: "age",
-            rules: { required: true },
-            componentName: "el-input-number",
-            tableColumnProps: {
-              sortable: true,
-            },
-          },
-          {
-            title: "Date",
-            dataIndex: "date",
-            componentName: "el-date-picker",
-          },
-          {
-            title: "Address",
-            dataIndex: "address",
-            renderHeader: (h) => {
-              return <div>hello</div>;
-            },
-          },
-        ];
+        return [];
       },
     },
     dataSource: {
       type: Array,
       default: function () {
-        return [
-          {
-            date: "2016-05-03",
-            name: "Tom Smith",
-            phone: "15688881111",
-            address: "No. 189, Grove St, Los Angeles",
-            age: 19,
-          },
-          {
-            date: "2016-05-02",
-            name: "Bob Json",
-            phone: "13622223333",
-            address: "No. 189, Grove St, Los Angeles",
-            age: 21,
-          },
-        ];
+        return [];
       },
     },
     tableProps: {
@@ -147,14 +80,21 @@ export default {
     } = this;
 
     const renderDefaultComponent = (column) => {
-      const { title, dataIndex, render, renderHeader, tableColumnProps } =
-        column;
+      const {
+        title,
+        width,
+        dataIndex,
+        render,
+        renderHeader,
+        tableColumnProps,
+      } = column;
 
       return (
         <el-table-column
           resizable={false}
           label={title}
           prop={dataIndex}
+          width={width}
           props={tableColumnProps}
           scopedSlots={{
             default: isFunction(render)
@@ -173,19 +113,19 @@ export default {
           style="width: 100%"
           data={dataSource}
           size={size}
-          props={getTableProps}
-          on={getTableEvents}
+          props={{ ...getTableProps }}
+          on={{ ...getTableEvents }}
         >
           {columns.map((column) => renderDefaultComponent(column))}
         </el-table>
 
         {paginationProps?.total ? (
-          <div style="text-align: right; padding: 14px 0;">
+          <div style="text-align: right; margin-top: 20px;">
             <el-pagination
               background
               layout="prev, pager, next"
-              props={paginationProps}
-              on={paginationEvents}
+              props={{ ...paginationProps }}
+              on={{ ...paginationEvents }}
             ></el-pagination>
           </div>
         ) : null}

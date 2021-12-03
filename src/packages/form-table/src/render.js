@@ -89,7 +89,7 @@ export default {
       });
     },
   },
-  render(h) {
+  render: function (h) {
     const {
       size,
       dataSource,
@@ -100,7 +100,7 @@ export default {
       getFormProps,
     } = this;
 
-    const renderDefaultHeader = ({ rules = {}, title }) => {
+    const defaultHeader = ({ rules = {}, title }) => {
       const requestedHeader = (
         <span>
           <i style="color: red">*</i> {title}
@@ -110,7 +110,7 @@ export default {
       return rules.required ? requestedHeader : title;
     };
 
-    const renderDefaultComponent = (column) => {
+    const defaultComponent = (column) => {
       const {
         title,
         dataIndex,
@@ -148,13 +148,13 @@ export default {
               : "",
             header: isFunction(renderHeader)
               ? () => renderHeader()
-              : () => renderDefaultHeader(column),
+              : () => defaultHeader(column),
           }}
         ></el-table-column>
       );
     };
 
-    const renderFormComponent = (column) => {
+    const formComponent = (column) => {
       const {
         title,
         dataIndex,
@@ -244,7 +244,7 @@ export default {
             },
             header: isFunction(renderHeader)
               ? () => renderHeader()
-              : () => renderDefaultHeader(column),
+              : () => defaultHeader(column),
           }}
         ></el-table-column>
       );
@@ -278,11 +278,11 @@ export default {
 
             // 返回内置组件
             if (components.includes(componentName)) {
-              return renderFormComponent(column);
+              return formComponent(column);
             }
 
             // 返回默认组件
-            return renderDefaultComponent(column);
+            return defaultComponent(column);
           })}
         </el-table>
       </el-form>

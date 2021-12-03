@@ -10,7 +10,7 @@ FormTable 将常规的表单形式，转化成表格的形式，方便用于批�
 
 只需要传入数据即可展示
 
-::: demo 目前仅提供输入、数字输入、下拉、日期四种内置组件。如果不满足需求，可以使用 `render` 方法进行自定义组件的渲染
+::: demo 目前仅提供输入、数字输入、下拉、日期四种常用组件。根据业务需求，还可以使用 `render` 方法进行自定义组件渲染
 
 ```vue
 <template>
@@ -47,33 +47,32 @@ export default {
           },
         },
         {
-          title: "Name",
+          title: "姓名",
           dataIndex: "name",
           width: 150,
+        },
+        {
+          title: "联系方式",
+          dataIndex: "phone",
+          width: 150,
+          rules: { required: true },
           render: (h, row, $index) => {
             return (
               <el-input
-                v-model={row.name}
+                v-model={row.phone}
                 style="width: 100%"
                 placeholder="请输入"
                 props={{}} // 绑定相关属性
                 on={{
                   // 绑定相关事件
-                  input: (value) => console.log(this),
+                  input: (value) => console.log(value),
                 }}
               />
             );
           },
         },
         {
-          title: "Phone",
-          dataIndex: "phone",
-          width: 150,
-          rules: { required: true },
-          componentName: "el-input",
-        },
-        {
-          title: "Age",
+          title: "年龄",
           dataIndex: "age",
           width: 150,
           rules: { required: true },
@@ -83,57 +82,29 @@ export default {
           },
         },
         {
-          title: "Date",
+          title: "出生日期",
           dataIndex: "date",
           width: 150,
           componentName: "el-date-picker",
         },
         {
-          title: "Like",
+          title: "职业",
           dataIndex: "like",
           width: 150,
           componentName: "el-select",
           options: [
-            { label: "cat", value: "0" },
-            { label: "dog", value: "1" },
+            { label: "工人", value: "0" },
+            { label: "其他", value: "1" },
           ],
         },
         {
-          title: "Source",
-          dataIndex: "source",
-          width: 150,
-          render: (h, row, $index) => {
-            const options = [
-              {
-                value: 1,
-                label: "东南",
-                children: [
-                  {
-                    value: 2,
-                    label: "上海",
-                    children: [
-                      { value: 3, label: "普陀" },
-                      { value: 4, label: "黄埔" },
-                      { value: 5, label: "徐汇" },
-                    ],
-                  },
-                ],
-              },
-            ];
-            return (
-              <el-cascader v-model={row.source} options={options}></el-cascader>
-            );
-          },
-        },
-        {
-          title: "Address",
+          title: "联系地址",
           dataIndex: "address",
           width: 150,
           componentName: "el-input",
         },
         {
-          title: "Address",
-          dataIndex: "address",
+          title: "编辑",
           width: 150,
           tableColumnProps: {
             fixed: "right",
@@ -141,9 +112,9 @@ export default {
           render: (h, row, $index) => {
             return (
               <div>
-                <el-button size="mini">up</el-button>
+                <el-button size="mini">删除</el-button>
                 <el-button type="primary" size="mini">
-                  down
+                  编辑
                 </el-button>
               </div>
             );

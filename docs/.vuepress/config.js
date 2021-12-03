@@ -40,5 +40,6 @@ function getComponents() {
   return [
     ["/guide/search", "Search 搜索"],
     ["/guide/form-table", "FormTable 表单"],
+    ["/guide/table", "Table 表格"],
   ];
 }

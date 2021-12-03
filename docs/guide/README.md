@@ -1,10 +1,8 @@
----
-title: "什么是Element Buff"
----
+# Element Buff
 
-## 介绍
+A library of common business components based on Element, adapted to the use of vue2.0 projects. Simple, efficient, and reusable. It is convenient for front-end developers to develop business quickly.
 
-一个基于 `vue2.0` 和 `Element UI 2x` 版本的常规业务组件库。增强在表单输入，列表搜索，表格展示操作等常见业务系统中使用。可以有效的节约前端的搬砖时间，提高开发效率，减少加班秃头。
+一个基于 Element 的常用业务组件库，适配 vue2.0 项目使用。简单，高效，复用性强。方便前端开发人员快速开发业务。
 
 ## 快速上手
 
@@ -18,15 +16,15 @@ yarn add @vue/babel-preset-jsx @vue/babel-helper-vue-jsx-merge-props
 
 ```js
 module.exports = {
-  presets: ["@vue/babel-preset-jsx"],
+  presets: [["@vue/babel-preset-jsx", { injectH: false }]],
 };
 ```
 
-第二步：安装 element 和 uennki
+第二步：安装 element-ui 和 element-buff
 
 ```bash
 yarn add element-ui
-yarn add uennki-ui
+yarn add element-buff
 ```
 
 在 main.js 中写入以下内容
@@ -34,13 +32,13 @@ yarn add uennki-ui
 ```js
 import Vue from "vue";
 import ElementUI from "element-ui";
-import UennkiUI from "uennki-ui";
+import ElementBuff from "element-buff";
 import "element-ui/lib/theme-chalk/index.css";
 import App from "./App.vue";
 
 Vue.use(ElementUI);
 
-Vue.use(UennkiUI); // 全局注册所有组件
+Vue.use(ElementBuff); // 全局注册所有组件
 
 new Vue({
   el: "#app",
@@ -48,4 +46,10 @@ new Vue({
 });
 ```
 
-这样，你就可以在 vue 文件中使用内置的业务组件了
+值得注意一点，当使用 ESlint 等校验时，有时候需要关闭未使用的变量检查，来启动 vue 项目:
+
+```bash
+"rules": {
+  "no-unused-vars": "off"
+}
+```

@@ -10,143 +10,13 @@ export default {
     columns: {
       type: Array,
       default: function () {
-        return [
-          {
-            tableColumnProps: {
-              type: "selection",
-              align: "center",
-            },
-          },
-          {
-            title: "Name",
-            dataIndex: "name",
-            width: 200,
-            render: (h, row, $index) => {
-              return (
-                <el-input
-                  v-model={row.name}
-                  style="width: 100%"
-                  placeholder="请输入"
-                  props={{}} // 绑定相关属性
-                  on={{
-                    // 绑定相关事件
-                    input: (value) => console.log(this),
-                  }}
-                />
-              );
-            },
-          },
-          {
-            title: "Phone",
-            dataIndex: "phone",
-            width: 200,
-            rules: { required: true },
-            componentName: "el-input",
-          },
-          {
-            title: "Age",
-            dataIndex: "age",
-            width: 200,
-            rules: { required: true },
-            componentName: "el-input-number",
-            tableColumnProps: {
-              sortable: true,
-            },
-          },
-          {
-            title: "Date",
-            dataIndex: "date",
-            width: 200,
-            componentName: "el-date-picker",
-          },
-          {
-            title: "Like",
-            dataIndex: "like",
-            width: 200,
-            componentName: "el-select",
-            options: [
-              { label: "cat", value: "0" },
-              { label: "dog", value: "1" },
-            ],
-          },
-          {
-            title: "Source",
-            dataIndex: "source",
-            width: 200,
-            render: (h, row, $index) => {
-              const options = [
-                {
-                  value: 1,
-                  label: "东南",
-                  children: [
-                    {
-                      value: 2,
-                      label: "上海",
-                      children: [
-                        { value: 3, label: "普陀" },
-                        { value: 4, label: "黄埔" },
-                        { value: 5, label: "徐汇" },
-                      ],
-                    },
-                    {
-                      value: 7,
-                      label: "江苏",
-                      children: [
-                        { value: 8, label: "南京" },
-                        { value: 9, label: "苏州" },
-                        { value: 10, label: "无锡" },
-                      ],
-                    },
-                    {
-                      value: 12,
-                      label: "浙江",
-                      children: [
-                        { value: 13, label: "杭州" },
-                        { value: 14, label: "宁波" },
-                        { value: 15, label: "嘉兴" },
-                      ],
-                    },
-                  ],
-                },
-              ];
-              return (
-                <el-cascader
-                  v-model={row.source}
-                  options={options}
-                ></el-cascader>
-              );
-            },
-          },
-          {
-            title: "Address",
-            dataIndex: "address",
-            width: 200,
-            componentName: "el-input",
-          },
-        ];
+        return [];
       },
     },
     dataSource: {
       type: Array,
       default: function () {
-        return [
-          {
-            date: "2016-05-03",
-            name: "Tom Smith",
-            phone: "15688881111",
-            source: "",
-            address: "No. 189, Grove St, Los Angeles",
-            age: 19,
-          },
-          {
-            date: "2016-05-02",
-            name: "Bob Json",
-            phone: "13622223333",
-            source: "",
-            address: "No. 189, Grove St, Los Angeles",
-            age: 21,
-          },
-        ];
+        return [];
       },
     },
     formProps: {
@@ -188,7 +58,6 @@ export default {
     getTableProps() {
       let defaultProps = {
         border: false,
-        stripe: false,
         "header-cell-style": {
           background: "#fafafa",
           color: "#606266",
@@ -404,8 +273,6 @@ export default {
               "el-input",
               "el-select",
               "el-date-picker",
-              "el-cascader",
-              "el-switch",
               "el-input-number",
             ];
 
@@ -418,15 +285,6 @@ export default {
             return renderDefaultComponent(column);
           })}
         </el-table>
-
-        <div style="margin-top: 14px">
-          <el-button size="small" v-on:click={this.resetFields}>
-            Reset
-          </el-button>
-          <el-button type="primary" size="small" v-on:click={this.validate}>
-            Submit
-          </el-button>
-        </div>
       </el-form>
     );
   },

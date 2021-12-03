@@ -24,12 +24,12 @@ export default {
       dataSource: {},
       columns: [
         {
-          label: "input",
+          title: "input",
           dataIndex: "input",
           componentName: "el-input",
         },
         {
-          label: "select",
+          title: "select",
           dataIndex: "select",
           componentName: "el-select",
           options: [
@@ -44,12 +44,12 @@ export default {
           ],
         },
         {
-          label: "date",
+          title: "date",
           dataIndex: "date",
           componentName: "el-date-picker",
         },
         {
-          label: "cascader",
+          title: "cascader",
           dataIndex: "cascader",
           componentName: "el-cascader",
           options: [
@@ -102,7 +102,7 @@ export default {
 
 | 参数            | 说明               | 类型   | 可选值 | 默认值 |
 | --------------- | ------------------ | ------ | ------ | ------ |
-| label           | 标题               | string | -      | -      |
+| title           | 标题               | string | -      | -      |
 | dataIndex       | 绑定的键名         | string | -      | -      |
 | options         | 下拉框和级联框数据 | array  | -      | -      |
 | componentProps  | 组件自身属性       | object | -      | -      |

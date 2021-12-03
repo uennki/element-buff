@@ -16,15 +16,15 @@ yarn add @vue/babel-preset-jsx @vue/babel-helper-vue-jsx-merge-props
 
 ```js
 module.exports = {
-  presets: ["@vue/babel-preset-jsx"],
+  presets: [["@vue/babel-preset-jsx", { injectH: false }]],
 };
 ```
 
-第二步：安装 element 和 uennki
+第二步：安装 element-ui 和 element-buff
 
 ```bash
 yarn add element-ui
-yarn add uennki-ui
+yarn add element-buff
 ```
 
 在 main.js 中写入以下内容
@@ -32,13 +32,13 @@ yarn add uennki-ui
 ```js
 import Vue from "vue";
 import ElementUI from "element-ui";
-import UennkiUI from "uennki-ui";
+import ElementBuff from "element-buff";
 import "element-ui/lib/theme-chalk/index.css";
 import App from "./App.vue";
 
 Vue.use(ElementUI);
 
-Vue.use(UennkiUI); // 全局注册所有组件
+Vue.use(ElementBuff); // 全局注册所有组件
 
 new Vue({
   el: "#app",
@@ -46,4 +46,10 @@ new Vue({
 });
 ```
 
-这样，你就可以在 vue 文件中使用内置的业务组件了
+值得注意一点，当使用 ESlint 等校验时，有时候需要关闭未使用的变量检查，来启动 vue 项目:
+
+```bash
+"rules": {
+  "no-unused-vars": "off"
+}
+```

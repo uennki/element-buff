@@ -1,79 +1,153 @@
 # FormTable 表单
 
-搜索通常用于表单，列表页面中，起到对数据进行查询的作用。由 element 中的输入框、下拉框、时间选择、级联选择四个原生组件封装而成。
+FormTable 将常规的表单形式，转化成表格的形式，方便用于批量数据的录入。
 
 ### 使用场景
 
-表格、列表展示等页面的数据查询。
+相同类型的数据，需要批量录入时候使用。例如批量录入商品信息、发货信息、个人信息等。
 
 ### 代码演示
 
 只需要传入数据即可展示
 
-::: demo 目前仅提供输入、下拉、级联、日期四种内置组件
+::: demo 目前仅提供输入、数字输入、下拉、日期四种内置组件。如果不满足需求，可以使用 `render` 方法进行自定义组件的渲染
 
 ```vue
 <template>
-  <ProElFormTable />
+  <ProElFormTable :columns="columns" :dataSource="dataSource" />
 </template>
 
 <script>
 export default {
   data() {
     return {
-      dataSource: {},
+      dataSource: [
+        {
+          date: "2016-05-03",
+          name: "Tom Smith",
+          phone: "15688881111",
+          source: "",
+          address: "No. 189, Grove St, Los Angeles",
+          age: 19,
+        },
+        {
+          date: "2016-05-02",
+          name: "Bob Json",
+          phone: "13622223333",
+          source: "",
+          address: "No. 189, Grove St, Los Angeles",
+          age: 21,
+        },
+      ],
       columns: [
         {
-          label: "input",
-          dataIndex: "input",
+          tableColumnProps: {
+            type: "selection",
+            align: "center",
+          },
+        },
+        {
+          title: "Name",
+          dataIndex: "name",
+          width: 150,
+          render: (h, row, $index) => {
+            return (
+              <el-input
+                v-model={row.name}
+                style="width: 100%"
+                placeholder="请输入"
+                props={{}} // 绑定相关属性
+                on={{
+                  // 绑定相关事件
+                  input: (value) => console.log(this),
+                }}
+              />
+            );
+          },
+        },
+        {
+          title: "Phone",
+          dataIndex: "phone",
+          width: 150,
+          rules: { required: true },
           componentName: "el-input",
         },
         {
-          label: "select",
-          dataIndex: "select",
-          componentName: "el-select",
-          options: [
-            {
-              label: "hello",
-              value: 1,
-            },
-            {
-              label: "world",
-              value: 2,
-            },
-          ],
+          title: "Age",
+          dataIndex: "age",
+          width: 150,
+          rules: { required: true },
+          componentName: "el-input-number",
+          tableColumnProps: {
+            sortable: true,
+          },
         },
         {
-          label: "date",
+          title: "Date",
           dataIndex: "date",
+          width: 150,
           componentName: "el-date-picker",
         },
         {
-          label: "cascader",
-          dataIndex: "cascader",
-          componentName: "el-cascader",
+          title: "Like",
+          dataIndex: "like",
+          width: 150,
+          componentName: "el-select",
           options: [
-            {
-              value: "zhinan",
-              label: "指南",
-              children: [
-                {
-                  value: "shejiyuanze",
-                  label: "设计原则",
-                  children: [
-                    {
-                      value: "yizhi",
-                      label: "一致",
-                    },
-                    {
-                      value: "fankui",
-                      label: "反馈",
-                    },
-                  ],
-                },
-              ],
-            },
+            { label: "cat", value: "0" },
+            { label: "dog", value: "1" },
           ],
+        },
+        {
+          title: "Source",
+          dataIndex: "source",
+          width: 150,
+          render: (h, row, $index) => {
+            const options = [
+              {
+                value: 1,
+                label: "东南",
+                children: [
+                  {
+                    value: 2,
+                    label: "上海",
+                    children: [
+                      { value: 3, label: "普陀" },
+                      { value: 4, label: "黄埔" },
+                      { value: 5, label: "徐汇" },
+                    ],
+                  },
+                ],
+              },
+            ];
+            return (
+              <el-cascader v-model={row.source} options={options}></el-cascader>
+            );
+          },
+        },
+        {
+          title: "Address",
+          dataIndex: "address",
+          width: 150,
+          componentName: "el-input",
+        },
+        {
+          title: "Address",
+          dataIndex: "address",
+          width: 150,
+          tableColumnProps: {
+            fixed: "right",
+          },
+          render: (h, row, $index) => {
+            return (
+              <div>
+                <el-button size="mini">up</el-button>
+                <el-button type="primary" size="mini">
+                  down
+                </el-button>
+              </div>
+            );
+          },
         },
       ],
     };
@@ -88,22 +162,31 @@ export default {
 
 内置组件的参数与 element 对应组件配置相一致
 
-| 参数       | 说明                           | 类型   | 可选值 | 默认值 |
-| :--------- | :----------------------------- | :----- | :----- | :----- |
-| columns    | 布局数据项                     | array  | -      | []     |
-| dataSource | 绑定数据                       | object | -      | {}     |
-| formEvents | 表单事件同 Element Form Events | object | -      | {}     |
-| formProps  | 表单属性同 Element Form        | object | -      | {}     |
-| span       | 列数                           | number | -      | 12     |
+| 参数        | 说明                          | 类型   | 可选值 | 默认值 |
+| :---------- | :---------------------------- | :----- | :----- | :----- |
+| size        | 组件大小                      | string | -      | -      |
+| columns     | 布局数据项                    | array  | -      | -      |
+| dataSource  | 绑定数据                      | object | -      | -      |
+| formProps   | 表单属性同 Element Form 属性  | object | -      | -      |
+| formEvents  | 表单事件同 Element Form 事件  | object | -      | -      |
+| tableProps  | 表格事件同 Element Table 属性 | object | -      | -      |
+| tableEvents | 表格事件同 Element Table 事件 | object | -      | -      |
 
 ### columns 配置
 
 以下是 columns 数组对象的相关属性
 
-| 参数            | 说明               | 类型   | 可选值 | 默认值 |
-| --------------- | ------------------ | ------ | ------ | ------ |
-| label           | 标题               | string | -      | -      |
-| dataIndex       | 绑定的键名         | string | -      | -      |
-| options         | 下拉框和级联框数据 | array  | -      | -      |
-| componentProps  | 组件自身属性       | object | -      | -      |
-| componentEvents | 组件自身事件       | object | -      | -      |
+| 参数             | 说明             | 类型     | 可选值 | 默认值 |
+| ---------------- | ---------------- | -------- | ------ | ------ |
+| title            | 标题             | string   | -      | -      |
+| dataIndex        | 绑定的键名       | string   | -      | -      |
+| width            | 列宽             | number   | -      | -      |
+| rules            | 校验规则         | object   | -      | -      |
+| tableColumnProps | 表格列属性配置   | object   | -      | -      |
+| formItemProps    | 表单项属性配置   | object   | -      | -      |
+| componentName    | 内置组件名       | string   | -      | -      |
+| componentEvents  | 内置组件事件     | object   | -      | -      |
+| componentProps   | 内置组件属性     | object   | -      | -      |
+| options          | 下拉项数组       | array    | -      | -      |
+| render           | 单元格自定义渲染 | function | -      | -      |
+| renderHeader     | 表头自定义渲染   | function | -      | -      |

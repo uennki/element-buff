@@ -9,7 +9,7 @@
   >
     <el-row :gutter="20">
       <el-col v-for="(column, index) in getColumns" :span="span" :key="index">
-        <el-form-item :label="column.label" :prop="`${column.dataIndex}`">
+        <el-form-item :label="column.title" :prop="`${column.dataIndex}`">
           <el-input
             v-if="column.componentName === 'el-input'"
             v-model="dataSource[column.dataIndex]"

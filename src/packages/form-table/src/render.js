@@ -5,7 +5,7 @@ export default {
   props: {
     size: {
       type: String,
-      default: "small",
+      default: "mini",
     },
     columns: {
       type: Array,
@@ -190,34 +190,37 @@ export default {
                   {/* 输入框 */}
                   {componentName === "el-input" && (
                     <el-input
-                      v-model={row[`${dataIndex}`]}
                       style="width: 100%"
                       placeholder="请输入"
+                      v-model={row[`${dataIndex}`]}
                       props={{ ...componentProps }}
                       on={{ ...componentEvents }}
+                      size={size}
                     />
                   )}
 
                   {/* 数字输入款 */}
                   {componentName === "el-input-number" && (
                     <el-input-number
-                      v-model={row[`${dataIndex}`]}
                       style="width: 100%"
                       placeholder="请输入"
                       controls-position="right"
+                      v-model={row[`${dataIndex}`]}
                       props={{ ...componentProps }}
                       on={{ ...componentEvents }}
+                      size={size}
                     />
                   )}
 
                   {/* 下拉框 */}
                   {componentName === "el-select" && (
                     <el-select
-                      v-model={row[`${dataIndex}`]}
                       style="width: 100%"
                       placeholder="请选择"
+                      v-model={row[`${dataIndex}`]}
                       props={{ ...componentProps }}
                       on={{ ...componentEvents }}
+                      size={size}
                     >
                       {options.map(({ label, value }) => {
                         return (
@@ -237,6 +240,7 @@ export default {
                       placeholder="请选择"
                       props={{ ...componentProps }}
                       on={{ ...componentEvents }}
+                      size={size}
                     ></el-date-picker>
                   )}
                 </el-form-item>

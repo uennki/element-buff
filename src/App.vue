@@ -23,7 +23,7 @@ export default {
         {
           date: "2016-05-02",
           name: "Bob Json",
-          phone: "13622223333",
+          phone: "1362222123123333",
           source: "",
           address: "No. 189, Grove St, Los Angeles",
           age: 21,

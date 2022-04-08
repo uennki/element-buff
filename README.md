@@ -2,8 +2,6 @@
 
 A library of common business components based on Element, adapted to the use of vue2.0 projects. Simple, efficient, and reusable. It is convenient for front-end developers to develop business quickly.
 
-
-
 ## 快速上手
 
 第一步：安装 jsx 插件，特定组件需要该插件支持
